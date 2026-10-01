@@ -1,111 +1,147 @@
-// Portail Rémi Moreau — envoi des demandes par e-mail (FormSubmit) + relais WhatsApp.
+// Portail Rémi Moreau — le formulaire ne transmet rien lui-même : il prépare un message
+// que le visiteur envoie depuis son propre appareil (SMS, WhatsApp ou e-mail).
+// Aucun appel réseau, aucun cookie, aucun stockage dans le navigateur.
 (function () {
-  var EMAIL_ENDPOINT = "https://formsubmit.co/ajax/remi@lepacteimmo.com";
+  var MOBILE = "+33609712791";
   var WHATSAPP = "https://wa.me/33609712791";
+  var EMAIL = "remi@lepacteimmo.com";
 
-  var dlg = document.getElementById("dlg");
-  var form = document.getElementById("lead");
-  var done = document.getElementById("done");
-  var err = document.getElementById("err");
-  var send = document.getElementById("send");
-  var projet = document.getElementById("projet");
-  var invest = document.getElementById("invest");
-  var wa = document.getElementById("wa");
+  function $(id) { return document.getElementById(id); }
+  var dlg = $("dlg"), form = $("lead"), done = $("done"), err = $("err");
+  var projet = $("projet"), invest = $("invest");
+  var channels = {
+    sms: { label: "SMS", links: [$("by-sms"), $("again-sms")] },
+    whatsapp: { label: "WhatsApp", links: [$("by-wa"), $("again-wa")] },
+    mail: { label: "e-mail", links: [$("by-mail"), $("again-mail")] }
+  };
 
-  // Origine de la visite : ?src=instagram&c=campagne (ou utm_source / utm_campaign)
+  // Origine de la visite : ?src=instagram&c=campagne (ou utm_source / utm_campaign).
+  // Elle figure en clair dans le message : le visiteur la voit avant d'envoyer.
+  function tag(v) { return (v || "").replace(/[^0-9A-Za-zÀ-ÿ _.\-]/g, "").slice(0, 40); }
   var qs = new URLSearchParams(location.search);
-  var source = qs.get("src") || qs.get("utm_source") || "";
-  var campagne = qs.get("c") || qs.get("utm_campaign") || "";
+  var origine = [tag(qs.get("src") || qs.get("utm_source")), tag(qs.get("c") || qs.get("utm_campaign"))].filter(Boolean).join(" / ");
 
+  // Le SMS n'est proposé que sur un téléphone ou une tablette.
+  var mobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || (window.matchMedia && window.matchMedia("(pointer:coarse)").matches);
+  if (!mobile) {
+    channels.sms.links.forEach(function (a) { a.hidden = true; });
+    $("by-wa").className = "btn primary";
+  }
+
+  function val(id) { return $(id).value.trim(); }
+  function two(n) { return (n < 10 ? "0" : "") + n; }
   function syncInvest() { invest.hidden = projet.value !== "Investir"; }
+
+  function collect() {
+    var slot = form.querySelector('input[name="creneau"]:checked');
+    var inv = projet.value === "Investir";
+    return {
+      prenom: val("prenom"), tel: val("tel"), creneau: slot ? slot.value : "", projet: projet.value,
+      quartier: val("quartier"), budget: inv ? val("budget") : "", rdt: inv ? val("rdt") : ""
+    };
+  }
+
+  function missing(d) {
+    var m = [];
+    if (!d.prenom) m.push("votre prénom");
+    if (d.tel.replace(/\D/g, "").length < 9) m.push("un numéro de téléphone valide");
+    if (!d.creneau) m.push("un créneau");
+    if (!d.projet) m.push("votre projet");
+    return m;
+  }
+
+  // Le message contient tout ce qui est transmis, et rien d'autre.
+  function message(d) {
+    var n = new Date(), l = [];
+    if (d.creneau === "Tout de suite") l.push("À RAPPELER TOUT DE SUITE");
+    l.push("Bonjour Rémi, je vous demande de me rappeler au sujet de mon projet immobilier.", "");
+    [
+      ["Prénom", d.prenom], ["Téléphone", d.tel], ["Créneau", d.creneau], ["Projet", d.projet],
+      ["Quartier ou commune", d.quartier],
+      ["Budget", d.budget && d.budget.replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " €"],
+      ["Rendement net visé", d.rdt && d.rdt.replace(".", ",") + " %"],
+      ["Origine", origine]
+    ].forEach(function (p) { if (p[1]) l.push(p[0] + " : " + p[1]); });
+    l.push("", "Demande faite le " + two(n.getDate()) + "/" + two(n.getMonth() + 1) + "/" + n.getFullYear() +
+      " à " + two(n.getHours()) + " h " + two(n.getMinutes()) + " depuis votre portail.");
+    return l.join("\n");
+  }
+
+  // Met à jour les trois liens d'envoi avec le message courant.
+  function refresh() {
+    var d = collect(), text = message(d), enc = encodeURIComponent(text);
+    var subject = "Demande de rappel — " + (d.projet || "projet immobilier") + (d.prenom ? " — " + d.prenom : "") +
+      (d.creneau === "Tout de suite" ? " — À RAPPELER TOUT DE SUITE" : "");
+    var href = {
+      sms: "sms:" + MOBILE + "?&body=" + enc,
+      whatsapp: WHATSAPP + "?text=" + enc,
+      mail: "mailto:" + EMAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(text.replace(/\n/g, "\r\n"))
+    };
+    Object.keys(channels).forEach(function (k) {
+      channels[k].links.forEach(function (a) { a.href = href[k]; });
+    });
+    return { d: d, text: text };
+  }
+
+  function showForm() { form.hidden = false; done.hidden = true; }
+  function showDone(k, text) {
+    form.hidden = true; done.hidden = false;
+    $("done-text").textContent = "Il s'est ouvert dans votre application " + channels[k].label +
+      " : appuyez sur « Envoyer » pour que Rémi le reçoive.";
+    $("preview").textContent = text;
+    $("copy").textContent = "Copier le message";
+  }
+
+  // Clic sur un moyen d'envoi : on vérifie la saisie, puis le lien ouvre l'application du visiteur.
+  function onSend(k) {
+    return function (e) {
+      var r = refresh(), m = missing(r.d);
+      if (m.length) {
+        e.preventDefault();
+        showForm();
+        err.textContent = "Il manque " + m.join(", ") + ".";
+        err.hidden = false;
+        return;
+      }
+      err.hidden = true;
+      window.setTimeout(function () { showDone(k, r.text); }, 400);
+    };
+  }
+  Object.keys(channels).forEach(function (k) {
+    channels[k].links.forEach(function (a) { a.addEventListener("click", onSend(k)); });
+  });
+
+  form.addEventListener("submit", function (e) { e.preventDefault(); });
+  form.addEventListener("input", refresh);
+  form.addEventListener("change", refresh);
   projet.addEventListener("change", syncInvest);
 
+  $("copy").addEventListener("click", function () {
+    var btn = this, pre = $("preview");
+    function ok() { btn.textContent = "Message copié"; }
+    function manual() {
+      var r = document.createRange(), s = window.getSelection();
+      r.selectNodeContents(pre); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = "Message sélectionné : copiez-le";
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(pre.textContent).then(ok, manual);
+    else manual();
+  });
+
   function openDialog(p) {
-    form.hidden = false; done.hidden = true; err.hidden = true;
-    projet.value = p || "";
-    syncInvest();
+    showForm(); err.hidden = true;
+    if (p) projet.value = p;
+    syncInvest(); refresh();
     if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", "");
-    document.getElementById("prenom").focus();
+    $("prenom").focus();
   }
   function closeDialog() { if (dlg.close) dlg.close(); else dlg.removeAttribute("open"); }
 
   document.querySelectorAll("[data-open]").forEach(function (b) {
     b.addEventListener("click", function () { openDialog(b.getAttribute("data-open")); });
   });
-  document.getElementById("close").addEventListener("click", closeDialog);
-  document.getElementById("close2").addEventListener("click", closeDialog);
+  $("close").addEventListener("click", closeDialog);
+  $("close2").addEventListener("click", closeDialog);
+  $("edit").addEventListener("click", showForm);
   dlg.addEventListener("click", function (e) { if (e.target === dlg) closeDialog(); });
-
-  function val(id) { return document.getElementById(id).value.trim(); }
-
-  function collect() {
-    var slot = form.querySelector('input[name="Créneau"]:checked');
-    var d = {
-      "Prénom": val("prenom"),
-      "Téléphone": val("tel"),
-      "Créneau": slot ? slot.value : "",
-      "Projet": projet.value,
-      "Quartier ou commune": val("quartier")
-    };
-    if (projet.value === "Investir") {
-      if (val("budget")) d["Budget (€)"] = val("budget");
-      if (val("rdt")) d["Rendement net visé (%)"] = val("rdt");
-    }
-    if (source) d["Origine"] = source;
-    if (campagne) d["Campagne"] = campagne;
-    return d;
-  }
-
-  function whatsappText(d) {
-    var l = ["Bonjour Rémi, je souhaite être rappelé(e).", ""];
-    Object.keys(d).forEach(function (k) {
-      if (d[k] && k !== "Origine" && k !== "Campagne") l.push(k + " : " + d[k]);
-    });
-    return l.join("\n");
-  }
-
-  function showDone(ok, d) {
-    wa.href = WHATSAPP + "?text=" + encodeURIComponent(whatsappText(d));
-    form.hidden = true; done.hidden = false;
-    document.getElementById("done-title").textContent = ok ? "Demande envoyée" : "L'envoi par e-mail n'a pas abouti";
-    document.getElementById("done-title").style.color = ok ? "" : "var(--err)";
-    document.getElementById("done-text").textContent = ok
-      ? "Merci " + d["Prénom"] + ". Votre demande est partie par e-mail à Rémi Moreau. Vous pouvez aussi la lui envoyer sur WhatsApp."
-      : "Votre demande n'a pas pu partir par e-mail. Envoyez-la sur WhatsApp avec le bouton ci-dessous, ou appelez le 06 09 71 27 91.";
-    wa.textContent = ok ? "Envoyer aussi sur WhatsApp" : "Envoyer sur WhatsApp";
-  }
-
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    var d = collect();
-    var miss = [];
-    if (!d["Prénom"]) miss.push("votre prénom");
-    if (d["Téléphone"].replace(/\D/g, "").length < 9) miss.push("un numéro de téléphone valide");
-    if (!d["Créneau"]) miss.push("un créneau");
-    if (!d["Projet"]) miss.push("votre projet");
-    if (miss.length) { err.textContent = "Il manque " + miss.join(", ") + "."; err.hidden = false; return; }
-    err.hidden = true;
-
-    // Piège à robots : champ invisible, jamais rempli par une personne.
-    if (document.getElementById("site").value) { showDone(true, d); return; }
-
-    var payload = Object.assign({}, d, {
-      _subject: "Portail contact — " + d["Projet"] + " — " + d["Prénom"] + (d["Créneau"] === "Tout de suite" ? " — À RAPPELER TOUT DE SUITE" : ""),
-      _template: "table",
-      _captcha: "false"
-    });
-
-    send.disabled = true; send.textContent = "Envoi en cours…";
-    fetch(EMAIL_ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "Accept": "application/json" },
-      body: JSON.stringify(payload)
-    }).then(function (r) { return r.json().then(function (j) { return r.ok && String(j.success) === "true"; }); })
-      .catch(function () { return false; })
-      .then(function (ok) {
-        send.disabled = false; send.textContent = "Être rappelé";
-        showDone(ok, d);
-        if (ok) form.reset();
-      });
-  });
 })();
