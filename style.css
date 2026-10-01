@@ -87,3 +87,12 @@ legend{font-weight:700;font-size:.92rem;margin-bottom:6px;padding:0}
 .page h2{font-size:1.15rem;margin:26px 0 6px;color:var(--ink)}
 .page p{margin:0 0 10px;max-width:42em}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.partner{display:flex;align-items:center;gap:24px;margin-top:24px}
+.partner>a{flex:none}
+.partner img{display:block;width:134px;height:auto}
+.partner p{margin:0 0 8px}
+@media (max-width:440px){.partner{gap:16px}.partner img{width:104px}}
+.btn .num{font-weight:400;font-variant-numeric:tabular-nums}
+.btn .num::before{content:"·";margin-right:8px;font-weight:900}
+@media (max-width:700px){.btn .num{display:none}}
+@media (max-width:600px){.bar{gap:8px;padding-left:10px;padding-right:10px}.bar .btn{flex:1 1 auto;min-width:0;padding:10px 8px;font-size:.84rem;line-height:1.2;text-align:center}}
