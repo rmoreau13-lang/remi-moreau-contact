@@ -96,3 +96,6 @@ legend{font-weight:700;font-size:.92rem;margin-bottom:6px;padding:0}
 .btn .num::before{content:"·";margin-right:8px;font-weight:900}
 @media (max-width:700px){.btn .num{display:none}}
 @media (max-width:600px){.bar{gap:8px;padding-left:10px;padding-right:10px}.bar .btn{flex:1 1 auto;min-width:0;padding:10px 8px;font-size:.84rem;line-height:1.2;text-align:center}}
+.plogo{margin:0 0 16px}
+.plogo a{display:block;width:200px}
+.plogo img{display:block;width:100%;height:auto}
