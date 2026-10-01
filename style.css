@@ -1,0 +1,89 @@
+/* Portail Rémi Moreau — charte Le Pacte Immo : turquoise #0097a9, anthracite #383636, blanc ; Lato + Caveat */
+:root{
+  --bg:#ffffff; --surface:#ffffff; --ink:#383636; --muted:#6a6f70;
+  --accent:#0097a9; --accent-dark:#007a89; --line:#cfe3e6; --soft:#eef7f8; --err:#b3261e; --ok:#1b7a43;
+  --body:"Lato",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --hand:"Caveat","Segoe Script",cursive;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;padding:0 20px 96px}
+.wrap{max-width:860px;margin:0 auto}
+a{color:var(--accent-dark)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;border-bottom:2px solid var(--accent)}
+.top img{width:120px;height:auto}
+.top .who{text-align:right;font-size:.9rem}
+.top .who strong{display:block}
+
+.eyebrow{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin:32px 0 0}
+h1{font-size:clamp(3rem,10vw,4.4rem);line-height:1;color:var(--accent);font-weight:900;margin:6px 0 16px}
+h2{font-size:1.6rem;color:var(--accent);margin:44px 0 16px;font-weight:900;text-wrap:balance}
+.lead{max-width:30em;margin:0 0 22px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-weight:900;border-radius:8px;padding:12px 20px;cursor:pointer;text-decoration:none;border:2px solid var(--accent)}
+.btn.primary{background:var(--accent);color:#fff}
+.btn.primary:hover{background:var(--accent-dark);border-color:var(--accent-dark)}
+.btn.ghost{background:#fff;color:var(--ink)}
+.btn.ghost:hover{background:var(--soft)}
+.btn[disabled]{opacity:.6;cursor:wait}
+.cta{display:flex;flex-wrap:wrap;gap:10px}
+
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.card{font:inherit;text-align:left;background:#fff;color:var(--ink);border:1.5px solid var(--ink);border-radius:10px;padding:18px;cursor:pointer;display:flex;flex-direction:column;gap:6px;min-width:0}
+.card:hover,.card:focus-visible{border-color:var(--accent);background:var(--soft)}
+.card.wide{grid-column:1/-1;border-color:var(--accent);border-width:2px}
+.card .n{align-self:flex-end;font-size:.8rem;font-variant-numeric:tabular-nums;color:var(--muted);margin-bottom:-6px}
+.card strong{color:var(--accent-dark);font-size:1.1rem}
+.card span.d{font-size:.92rem}
+@media (max-width:560px){.cards{grid-template-columns:1fr}}
+.more{display:inline-block;margin-top:16px;font-weight:700}
+
+.about{display:grid;grid-template-columns:150px 1fr;gap:24px;align-items:start}
+.about img{width:150px;height:150px;border-radius:50%;object-fit:cover;border:3px solid var(--accent)}
+.about p{margin:0 0 12px}
+@media (max-width:560px){.about{grid-template-columns:1fr}.about img{width:120px;height:120px}}
+.hand{font-family:var(--hand);color:var(--accent);font-size:1.5rem;margin:40px 0 -34px}
+
+.rating{font-weight:900;font-size:1.15rem;margin:0 0 6px}
+.note{font-size:.85rem;color:var(--muted)}
+.reviews{display:grid;gap:12px;margin-top:16px;padding:0;list-style:none}
+.reviews li{border-left:3px solid var(--accent);padding:6px 0 6px 14px}
+.reviews p{margin:0}
+.reviews .by{font-size:.85rem;color:var(--muted)}
+
+footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);font-size:.85rem;color:var(--muted)}
+footer p{margin:0 0 8px}
+footer nav{display:flex;flex-wrap:wrap;gap:16px;margin-top:10px}
+
+.bar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));display:flex;justify-content:center;gap:10px;z-index:5}
+
+dialog{border:0;border-radius:14px;padding:0;width:min(520px,calc(100vw - 24px));max-height:calc(100dvh - 24px);color:var(--ink)}
+dialog::backdrop{background:rgba(56,54,54,.55)}
+.dlg{padding:22px;display:flex;flex-direction:column;gap:14px}
+.dlg-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.dlg-head h3{margin:0;font-size:1.25rem;color:var(--accent-dark)}
+.x{font:inherit;font-size:1.4rem;line-height:1;background:none;border:0;cursor:pointer;color:var(--ink);padding:4px 10px;border-radius:8px}
+label.f{display:flex;flex-direction:column;gap:5px;font-weight:700;font-size:.92rem}
+label.f small{font-weight:400;color:var(--muted)}
+input[type=text],input[type=tel],input[type=number],select{font:inherit;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:8px;padding:11px 12px;width:100%}
+fieldset{border:0;padding:0;margin:0}
+legend{font-weight:700;font-size:.92rem;margin-bottom:6px;padding:0}
+.slots{display:flex;flex-wrap:wrap;gap:8px}
+.slots label{border:1.5px solid var(--line);border-radius:999px;padding:8px 14px;cursor:pointer;font-weight:700;font-size:.9rem}
+.slots input{position:absolute;opacity:0}
+.slots label:has(input:checked){background:var(--accent);border-color:var(--accent);color:#fff}
+.slots label:has(input:focus-visible){outline:3px solid var(--accent);outline-offset:2px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.msg{margin:0;font-size:.92rem}
+.msg.err{color:var(--err)}
+.fine{font-size:.8rem;color:var(--muted);margin:0}
+.done{display:flex;flex-direction:column;gap:12px}
+.done h3{margin:0;color:var(--ok)}
+[hidden]{display:none!important}
+
+.page h1{font-size:2.2rem;color:var(--accent)}
+.page h2{font-size:1.15rem;margin:26px 0 6px;color:var(--ink)}
+.page p{margin:0 0 10px;max-width:42em}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
