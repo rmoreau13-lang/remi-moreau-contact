@@ -2,7 +2,7 @@
 
 Portail de contact de Rémi Moreau, négociateur immobilier chez Pardo & Chartier by Le Pacte Immo (Marseille).
 
-Site statique (HTML, CSS, JavaScript) publié avec GitHub Pages.
+Site statique (HTML, CSS, JavaScript) hébergé sur Vercel ; ce dépôt GitHub en est la source. Les en-têtes de sécurité sont définis dans `vercel.json`.
 
 ## Données personnelles
 
