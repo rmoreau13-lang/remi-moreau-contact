@@ -20,15 +20,15 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://remi-moreau-contact.vercel.app/">
 <link rel="icon" href="remi-moreau.jpg">
-<link rel="stylesheet" href="style.css?v=5">
+<link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
 <div class="wrap">
   <main>
-    <section class="hero" aria-labelledby="nom">
+    <section class="hero" aria-labelledby="qui">
       <img class="hero-logo" src="logo-pardo-chartier.png" alt="Pardo &amp; Chartier by Le Pacte Immo" width="64" height="64">
       <img class="hero-photo" src="portrait.webp" alt="Portrait de Rémi Moreau" width="132" height="132">
-      <h1 id="nom">Rémi Moreau</h1>
+      <h1 id="qui">Rémi Moreau</h1>
       <p class="role">Négociateur immobilier à Marseille</p>
 
       <div class="projet">
@@ -37,18 +37,30 @@
           <button class="chip" type="button" aria-pressed="false" data-projet="Estimer mon bien">Estimer</button>
           <button class="chip" type="button" aria-pressed="false" data-projet="Vendre">Vendre</button>
           <button class="chip" type="button" aria-pressed="false" data-projet="Acheter">Acheter</button>
-          <button class="chip" type="button" aria-pressed="false" data-projet="Louer">Louer</button>
+          <button class="chip" type="button" aria-pressed="false" data-projet="Louer mon bien (bailleur)">Louer <small>(Bailleur)</small></button>
           <button class="chip" type="button" aria-pressed="false" data-projet="Investir">Investir</button>
           <button class="chip" type="button" aria-pressed="false" data-projet="Une question">Question</button>
         </div>
       </div>
+
+      <form class="lead" id="lead" aria-labelledby="coord-label" novalidate>
+        <p class="label" id="coord-label">Vos coordonnées <small>(obligatoires)</small></p>
+        <div class="row2">
+          <label class="f" for="nom">Nom<input id="nom" name="nom" type="text" autocomplete="family-name" autocapitalize="words" spellcheck="false" enterkeyhint="next" maxlength="60" required></label>
+          <label class="f" for="prenom">Prénom<input id="prenom" name="prenom" type="text" autocomplete="given-name" autocapitalize="words" spellcheck="false" enterkeyhint="next" maxlength="60" required></label>
+        </div>
+        <label class="f" for="tel">Téléphone<input id="tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" enterkeyhint="next" maxlength="24" required></label>
+        <label class="f" for="email">E-mail<input id="email" name="email" type="email" autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false" enterkeyhint="go" maxlength="120" required></label>
+        <p class="msg err" id="err" role="alert" hidden></p>
+      </form>
 
       <div class="actions">
         <a class="btn primary big" data-send="rappel" href="sms:+33609712791?&amp;body=Bonjour%20R%C3%A9mi%2C%20je%20vous%20demande%20de%20me%20rappeler%20au%20sujet%20de%20mon%20projet%20immobilier.">Être rappelé</a>
         <a class="btn ghost" data-send="whatsapp" href="https://wa.me/33609712791?text=Bonjour%20R%C3%A9mi%2C%20je%20vous%20%C3%A9cris%20au%20sujet%20de%20mon%20projet%20immobilier.%20Vous%20pouvez%20me%20r%C3%A9pondre%20ici%20ou%20me%20rappeler%20%C3%A0%20ce%20num%C3%A9ro." target="_blank" rel="noopener noreferrer">WhatsApp</a>
         <a class="btn ghost" href="tel:+33496133333" aria-label="Joindre l’agence au 04 96 13 33 33">Joindre l’agence<span class="num">04 96 13 33 33</span></a>
       </div>
-      <p class="fine hint">« Être rappelé » ouvre un <span class="if-m">SMS</span><span class="if-d">e-mail</span> déjà rédigé : <span class="if-m">il vous reste à l’envoyer</span><span class="if-d">ajoutez votre numéro et envoyez-le</span>.<span class="if-d"> Rien ne s’ouvre ? Écrivez à remi@lepacteimmo.com.</span> Je vous rappelle sous 5 jours ouvrables, pour ce projet uniquement. <a href="confidentialite.html">Vos données et vos droits</a></p>
+      <p class="msg ok" id="sent" role="status" hidden></p>
+      <p class="fine hint">« Être rappelé » ouvre un <span class="if-m">SMS</span><span class="if-d">e-mail</span> déjà rédigé : il vous reste à l’envoyer.<span class="if-d"> Rien ne s’ouvre ? Écrivez à remi@lepacteimmo.com.</span> Je vous rappelle sous 5 jours ouvrables, pour ce projet uniquement. <a href="confidentialite.html">Vos données et vos droits</a></p>
       <a class="more" href="https://www.leboncoin.fr/boutique/7014169/pardo_chartier_by_le_pacte_immo.htm#online_ads" target="_blank" rel="noopener noreferrer">Voir les biens de l’agence</a>
     </section>
 
@@ -101,6 +113,6 @@
   <a class="btn ghost" href="tel:+33496133333" aria-label="Joindre l’agence au 04 96 13 33 33">Joindre l’agence<span class="num">04 96 13 33 33</span></a>
 </div>
 
-<script src="app.js?v=5"></script>
+<script src="app.js?v=6"></script>
 </body>
 </html>

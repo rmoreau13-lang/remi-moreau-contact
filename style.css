@@ -45,9 +45,21 @@ h2{font-size:1.6rem;color:var(--accent);margin:44px 0 16px;font-weight:900;text-
 .label{margin:0 0 8px;font-size:.92rem;font-weight:700}
 .label small{font-weight:400;font-size:.85rem;color:var(--muted)}
 .chips{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.chip{font:inherit;font-size:.95rem;font-weight:700;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:999px;min-height:44px;padding:8px 4px;cursor:pointer}
+.chip{font:inherit;font-size:.95rem;font-weight:700;line-height:1.2;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:999px;min-height:44px;padding:4px;cursor:pointer}
+.chip small{display:block;font-size:.78rem;font-weight:400}
 .chip:hover{border-color:var(--accent);background:var(--soft)}
 .chip[aria-pressed="true"]{background:var(--accent-dark);border-color:var(--accent-dark);color:#fff}
+/* Coordonnées : quatre champs, repris dans le message que le visiteur envoie lui-même */
+.lead{display:none;gap:10px;margin-top:18px;text-align:left}
+.js .lead{display:grid}
+.lead .label{margin:0 0 -2px;text-align:center}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+label.f{display:flex;flex-direction:column;gap:3px;min-width:0;font-size:.88rem;font-weight:700}
+.lead input{font:inherit;font-size:1rem;font-weight:400;color:var(--ink);background:#fff;border:1.5px solid #6f9aa1;border-radius:8px;box-shadow:none;-webkit-appearance:none;appearance:none;min-height:46px;padding:9px 12px;width:100%;scroll-margin-top:150px}
+.lead input[aria-invalid="true"]{border-color:var(--err);box-shadow:0 0 0 1px var(--err)}
+.msg{margin:0;font-size:.9rem;font-weight:700}
+.msg.err{color:var(--err)}
+.msg.ok{color:var(--accent-dark);text-align:center;margin-top:12px}
 .actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
 .actions .btn{min-width:0;min-height:50px;padding:12px 8px;text-align:center}
 .actions .big{grid-column:1/-1;min-height:56px;font-size:1.15rem}

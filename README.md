@@ -6,7 +6,7 @@ Site statique (HTML, CSS, JavaScript) hébergé sur Vercel ; ce dépôt GitHub e
 
 ## Données personnelles
 
-- Rien à saisir : chaque bouton ouvre un message déjà rédigé que le visiteur envoie lui-même par SMS, WhatsApp ou e-mail.
+- Quatre champs obligatoires (nom, prénom, téléphone, e-mail) : le portail prépare un message que le visiteur envoie lui-même par SMS, WhatsApp ou e-mail. La saisie ne quitte pas le navigateur.
 - Aucun cookie, aucun traceur, aucun appel à un site tiers au chargement (polices hébergées dans le dépôt).
 - Une politique de sécurité (Content-Security-Policy) interdit à la page tout envoi de données vers un serveur.
 
