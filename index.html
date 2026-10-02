@@ -20,51 +20,50 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://remi-moreau-contact.vercel.app/">
 <link rel="icon" href="remi-moreau.jpg">
-<link rel="stylesheet" href="style.css?v=4">
+<link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
 <div class="wrap">
-  <header class="top">
-    <img src="logo-pardo-chartier.png" alt="Pardo &amp; Chartier by Le Pacte Immo" width="120" height="120">
-    <div class="who"><strong>Rémi Moreau</strong>Votre interlocuteur immobilier à Marseille</div>
-  </header>
-
   <main>
-    <p class="eyebrow">Rémi Moreau</p>
-    <h1>Marseille</h1>
-    <p class="lead">Vendre, acheter, louer, investir ou faire estimer un bien : échangez directement avec moi.</p>
-    <div class="cta">
-      <button class="btn primary" type="button" data-open="">Être rappelé</button>
-      <a class="btn ghost" href="https://wa.me/33609712791" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-      <a class="btn ghost" href="tel:+33496133333" aria-label="Joindre l’agence au 04 96 13 33 33">Joindre l’agence<span class="num">04 96 13 33 33</span></a>
-    </div>
+    <section class="hero" aria-labelledby="nom">
+      <img class="hero-logo" src="logo-pardo-chartier.png" alt="Pardo &amp; Chartier by Le Pacte Immo" width="64" height="64">
+      <img class="hero-photo" src="portrait.webp" alt="Portrait de Rémi Moreau" width="132" height="132">
+      <h1 id="nom">Rémi Moreau</h1>
+      <p class="role">Négociateur immobilier à Marseille</p>
 
-    <h2>Votre projet</h2>
-    <div class="cards">
-      <button class="card wide" type="button" data-open="Estimer"><span class="n">01</span><strong>Faire estimer mon bien</strong><span class="d">Une vraie étude sur place, gratuite et sans engagement. Pas de prix calculé par un algorithme : une équipe de six personnes spécialisées sur Marseille débat collégialement de la valeur locative ou vénale de votre bien.</span></button>
-      <button class="card" type="button" data-open="Vendre"><span class="n">02</span><strong>Je veux vendre</strong><span class="d">Préparer la vente de mon bien</span></button>
-      <button class="card" type="button" data-open="Acheter"><span class="n">03</span><strong>Je cherche un bien</strong><span class="d">Partager mes critères de recherche</span></button>
-      <button class="card" type="button" data-open="Investir"><span class="n">04</span><strong>Je suis investisseur</strong><span class="d">Partager mes critères et mon objectif</span></button>
-      <button class="card" type="button" data-open="Question"><span class="n">05</span><strong>J'ai une question</strong><span class="d">Échanger simplement avec Rémi</span></button>
-      <button class="card" type="button" data-open="Louer mon bien (bailleur)"><span class="n">06</span><strong>Je veux louer mon bien</strong><span class="d">Bailleur : préparer la mise en location de mon bien</span></button>
-    </div>
-    <a class="more" href="https://www.leboncoin.fr/boutique/7014169/pardo_chartier_by_le_pacte_immo.htm#online_ads" target="_blank" rel="noopener noreferrer">Voir les biens de l’agence</a>
-
-    <p class="eyebrow spaced">Rémi Moreau</p>
-    <h2 class="tight">Votre interlocuteur</h2>
-    <div class="about">
-      <img src="remi-moreau.jpg" alt="Portrait de Rémi Moreau" width="150" height="150">
-      <div>
-        <p>Négociateur immobilier chez Pardo et Chartier By le pacte Immo, je vous accompagne avec des chiffres vérifiés, un suivi régulier et des réponses rapides.</p>
-        <p>Je travaille principalement le 13ᵉ, de Saint-Just au plateau d'Athéna jusqu'à Château-Gombert, et j'accompagne aussi des ventes partout à Marseille, du centre-ville au 7ᵉ.</p>
-        <p>Depuis plus de vingt ans, l’agence Pardo et Chartier By le pacte Immo accompagne les projets immobiliers dans les 12ᵉ, 11ᵉ, 13ᵉ, 4ᵉ et 5ᵉ arrondissements de Marseille, à Plan-de-Cuques et à Allauch. Quel que soit le quartier, votre demande sera prise en charge.</p>
+      <div class="projet">
+        <p class="label" id="projet-label">Votre projet <small>(facultatif)</small></p>
+        <div class="chips" role="group" aria-labelledby="projet-label">
+          <button class="chip" type="button" aria-pressed="false" data-projet="Estimer mon bien">Estimer</button>
+          <button class="chip" type="button" aria-pressed="false" data-projet="Vendre">Vendre</button>
+          <button class="chip" type="button" aria-pressed="false" data-projet="Acheter">Acheter</button>
+          <button class="chip" type="button" aria-pressed="false" data-projet="Louer">Louer</button>
+          <button class="chip" type="button" aria-pressed="false" data-projet="Investir">Investir</button>
+          <button class="chip" type="button" aria-pressed="false" data-projet="Une question">Question</button>
+        </div>
       </div>
+
+      <div class="actions">
+        <a class="btn primary big" data-send="rappel" href="sms:+33609712791?&amp;body=Bonjour%20R%C3%A9mi%2C%20je%20vous%20demande%20de%20me%20rappeler%20au%20sujet%20de%20mon%20projet%20immobilier.">Être rappelé</a>
+        <a class="btn ghost" data-send="whatsapp" href="https://wa.me/33609712791?text=Bonjour%20R%C3%A9mi%2C%20je%20vous%20%C3%A9cris%20au%20sujet%20de%20mon%20projet%20immobilier.%20Vous%20pouvez%20me%20r%C3%A9pondre%20ici%20ou%20me%20rappeler%20%C3%A0%20ce%20num%C3%A9ro." target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a class="btn ghost" href="tel:+33496133333" aria-label="Joindre l’agence au 04 96 13 33 33">Joindre l’agence<span class="num">04 96 13 33 33</span></a>
+      </div>
+      <p class="fine hint">« Être rappelé » ouvre un <span class="if-m">SMS</span><span class="if-d">e-mail</span> déjà rédigé : <span class="if-m">il vous reste à l’envoyer</span><span class="if-d">ajoutez votre numéro et envoyez-le</span>.<span class="if-d"> Rien ne s’ouvre ? Écrivez à remi@lepacteimmo.com.</span> Je vous rappelle sous 5 jours ouvrables, pour ce projet uniquement. <a href="confidentialite.html">Vos données et vos droits</a></p>
+      <a class="more" href="https://www.leboncoin.fr/boutique/7014169/pardo_chartier_by_le_pacte_immo.htm#online_ads" target="_blank" rel="noopener noreferrer">Voir les biens de l’agence</a>
+    </section>
+
+    <h2>Votre interlocuteur</h2>
+    <div class="about">
+      <p>Négociateur immobilier chez Pardo &amp; Chartier by Le Pacte Immo, je vous accompagne avec des chiffres vérifiés, un suivi régulier et des réponses rapides.</p>
+      <p>Je travaille principalement le 13ᵉ, de Saint-Just au plateau d'Athéna jusqu'à Château-Gombert, et j'accompagne aussi des ventes partout à Marseille, du centre-ville au 7ᵉ.</p>
+      <p>Depuis plus de vingt ans, l’agence Pardo &amp; Chartier by Le Pacte Immo accompagne les projets immobiliers dans les 12ᵉ, 11ᵉ, 13ᵉ, 4ᵉ et 5ᵉ arrondissements de Marseille, à Plan-de-Cuques et à Allauch. Quel que soit le quartier, votre demande sera prise en charge.</p>
+      <p><strong>Une estimation ?</strong> Une vraie étude sur place, gratuite et sans engagement. Pas de prix calculé par un algorithme : une équipe de six personnes spécialisées sur Marseille débat collégialement de la valeur locative ou vénale de votre bien.</p>
     </div>
 
     <p class="hand">by Le Pacte Immo</p>
     <h2>Votre bien, proposé par un réseau partenaire</h2>
     <p class="plogo"><a href="https://amanda.immo/" target="_blank" rel="noopener noreferrer" aria-label="Découvrir Amanda"><img src="amanda-logo.svg" alt="Amanda" width="200" height="50"></a></p>
-    <p>Pardo et Chartier By le pacte Immo est membre d’<a href="https://amanda.immo/" target="_blank" rel="noopener noreferrer">Amanda</a>. Dans le cadre d’un mandat exclusif partagé, les agences partenaires de votre secteur peuvent également présenter votre bien à leurs acquéreurs. Vous conservez votre interlocuteur au sein de l’agence.</p>
+    <p>Pardo &amp; Chartier by Le Pacte Immo est membre d’<a href="https://amanda.immo/" target="_blank" rel="noopener noreferrer">Amanda</a>. Dans le cadre d’un mandat exclusif partagé, les agences partenaires de votre secteur peuvent également présenter votre bien à leurs acquéreurs. Vous conservez votre interlocuteur au sein de l’agence.</p>
     <p><a href="https://phoceenne.amepi.fr/" target="_blank" rel="noopener noreferrer">Les agences du réseau local</a></p>
     <div class="partner">
       <a href="https://www.fnaim.fr/agence-immobiliere/923388/43-marseille-12-lepacteimmo.htm" target="_blank" rel="noopener noreferrer" aria-label="Notre agence adhérente à la FNAIM"><img src="fnaim-logo.png" alt="FNAIM" width="134" height="99"></a>
@@ -89,7 +88,7 @@
 
   <footer>
     <p>Portail sans cookie ni traceur. Vos coordonnées servent uniquement à vous répondre : aucune newsletter, aucune revente.</p>
-    <p><strong>Pardo et Chartier By le pacte Immo</strong></p>
+    <p><strong>Pardo &amp; Chartier by Le Pacte Immo</strong></p>
     <p>Pardo &amp; Chartier – 101 rue de l’Aiguillette, 13012 Marseille – <a href="tel:+33496133333">04 96 13 33 33</a> – SIREN 942 339 631 RCS Marseille – Carte pro CPI131020250000000048.</p>
     <p>Rémi Moreau – <a href="mailto:remi@lepacteimmo.com">remi@lepacteimmo.com</a> – <a href="https://www.lepacteimmo.com/" target="_blank" rel="noopener noreferrer">www.lepacteimmo.com</a></p>
     <nav><a href="confidentialite.html">Confidentialité</a><a href="mentions.html">Mentions légales</a><a href="https://www.instagram.com/remi.lepacteimmo/" target="_blank" rel="noopener noreferrer">Instagram</a></nav>
@@ -97,67 +96,11 @@
 </div>
 
 <div class="bar">
-  <button class="btn primary" type="button" data-open="">Être rappelé</button>
-  <a class="btn ghost" href="https://wa.me/33609712791" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+  <a class="btn primary" data-send="rappel" href="sms:+33609712791?&amp;body=Bonjour%20R%C3%A9mi%2C%20je%20vous%20demande%20de%20me%20rappeler%20au%20sujet%20de%20mon%20projet%20immobilier.">Être rappelé</a>
+  <a class="btn ghost" data-send="whatsapp" href="https://wa.me/33609712791?text=Bonjour%20R%C3%A9mi%2C%20je%20vous%20%C3%A9cris%20au%20sujet%20de%20mon%20projet%20immobilier.%20Vous%20pouvez%20me%20r%C3%A9pondre%20ici%20ou%20me%20rappeler%20%C3%A0%20ce%20num%C3%A9ro." target="_blank" rel="noopener noreferrer">WhatsApp</a>
   <a class="btn ghost" href="tel:+33496133333" aria-label="Joindre l’agence au 04 96 13 33 33">Joindre l’agence<span class="num">04 96 13 33 33</span></a>
 </div>
 
-<dialog id="dlg" aria-labelledby="dlg-title">
-  <div class="dlg">
-    <div class="dlg-head"><h3 id="dlg-title">Être rappelé</h3><button class="x" type="button" id="close" aria-label="Fermer">×</button></div>
-
-    <form id="lead" novalidate>
-      <div class="stack">
-        <label class="f" for="prenom">Prénom *<input id="prenom" type="text" autocomplete="given-name" required></label>
-        <label class="f" for="tel">Téléphone *<input id="tel" type="tel" autocomplete="tel" inputmode="tel" required></label>
-        <fieldset>
-          <legend>Créneau préféré *</legend>
-          <div class="slots">
-            <label><input type="radio" name="creneau" value="Tout de suite" required>Tout de suite</label>
-            <label><input type="radio" name="creneau" value="Matin">Matin</label>
-            <label><input type="radio" name="creneau" value="Midi">Midi</label>
-            <label><input type="radio" name="creneau" value="Soir">Soir</label>
-          </div>
-        </fieldset>
-        <label class="f" for="projet">Projet *
-          <select id="projet" required>
-            <option value="">Choisir mon projet</option>
-            <option>Vendre</option><option>Estimer</option><option>Acheter</option><option>Investir</option><option>Question</option><option>Louer mon bien (bailleur)</option>
-          </select></label>
-        <label class="f" for="quartier">Quartier ou commune du bien <small>(facultatif)</small><input id="quartier" type="text" placeholder="Quartier ou commune"></label>
-        <div class="stack" id="invest" hidden>
-          <label class="f" for="budget">Budget envisagé en € <small>(facultatif)</small><input id="budget" type="number" min="0" inputmode="numeric"></label>
-          <label class="f" for="rdt">Objectif de rendement net en % <small>(facultatif)</small><input id="rdt" type="number" min="0" step="0.1" inputmode="decimal"></label>
-        </div>
-        <p class="msg err" id="err" hidden role="alert"></p>
-        <p class="send-label" id="send-label">Envoyer ma demande par :</p>
-        <div class="channels" role="group" aria-labelledby="send-label">
-          <a class="btn primary" id="by-sms" data-channel="sms" href="sms:+33609712791">SMS</a>
-          <a class="btn ghost" id="by-wa" data-channel="whatsapp" href="https://wa.me/33609712791" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-          <a class="btn ghost" id="by-mail" data-channel="mail" href="mailto:remi@lepacteimmo.com">E-mail</a>
-        </div>
-        <p class="fine">* Informations nécessaires pour vous rappeler.</p>
-        <p class="fine">En envoyant ce message, vous demandez à Rémi Moreau de vous rappeler au sujet de ce projet : il le fait sous 5 jours ouvrables et n’utilise vos coordonnées que pour cette demande. Le portail n’enregistre rien, le message part de votre appareil. Responsable du traitement : agence Pardo &amp; Chartier by Le Pacte Immo. <a href="confidentialite.html">Vos données et vos droits</a>.</p>
-      </div>
-    </form>
-
-    <div class="done" id="done" hidden>
-      <h3 id="done-title">Votre message est prêt</h3>
-      <p class="msg" id="done-text" role="status"></p>
-      <pre class="preview" id="preview" tabindex="0" aria-label="Message préparé"></pre>
-      <button class="linkbtn" type="button" id="edit">Modifier ma demande</button>
-      <p class="fine">Rien ne s’est ouvert ? Choisissez un autre moyen, ou copiez le message et envoyez-le au 06 09 71 27 91 ou à remi@lepacteimmo.com.</p>
-      <div class="channels">
-        <a class="btn ghost" id="again-sms" data-channel="sms" href="sms:+33609712791">SMS</a>
-        <a class="btn ghost" id="again-wa" data-channel="whatsapp" href="https://wa.me/33609712791" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-        <a class="btn ghost" id="again-mail" data-channel="mail" href="mailto:remi@lepacteimmo.com">E-mail</a>
-      </div>
-      <button class="btn ghost" type="button" id="copy">Copier le message</button>
-      <button class="btn primary" type="button" id="close2">Fermer</button>
-    </div>
-  </div>
-</dialog>
-
-<script src="app.js?v=4"></script>
+<script src="app.js?v=5"></script>
 </body>
 </html>
